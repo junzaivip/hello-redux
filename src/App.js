@@ -3,6 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+
+
+
 
 // function App() {
 //   return (
@@ -20,9 +24,9 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <p className="bg-warning">{this.props.value}</p>
+                <p className="bg-warning">{this.props.counter}</p>
                 <button type="button" className="btn btn-success" onClick={this.props.onIncrement}> 增加 </button>&nbsp;&nbsp;
-                <button type="button" className="btn btn-success" onClick={this.props.onDecrement}> 减少 </button>
+                <button type="button" className="btn btn-warning" onClick={this.props.onDecrement}> 减少 </button>
             </div>
 
         )
@@ -36,4 +40,13 @@ App.propTypes = {
     OnDecrement: PropTypes.func.isRequired
 }
 
-export default App;
+const mapStateToProps =(state)=>{
+
+
+    return{
+        counter: state
+    }
+}
+
+
+export default connect(mapStateToProps)(App);

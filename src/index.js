@@ -10,6 +10,8 @@ import reducer from './reducers/counter'
 
 import {increment,decrement} from './actions';
 
+import { Provider } from 'react-redux'
+
 const store = createStore(reducer)
 
 // store.subscribe(()=> console.log("state updated!",store.getState()));
@@ -21,16 +23,13 @@ const store = createStore(reducer)
 // store.dispatch({ type:"INCREMENT" })
 
 
-const render = ()=>{
-    ReactDOM.render(<App
-        onIncrement={ ()=> store.dispatch(increment()) }
-        onDecrement ={ ()=> store.dispatch(decrement())  }
-        value = {store.getState()}/>, document.getElementById('root'));
-}
+ReactDOM.render(
+    <Provider store ={ store }>
+      <App/>
+    </Provider>,
+     document.getElementById('root'));
 
-render();
-
-store.subscribe(render);
+// store.subscribe(render);
 
 
 
